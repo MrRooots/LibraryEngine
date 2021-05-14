@@ -1,0 +1,16 @@
+{% extends 'library/base.html' %}
+
+{% block title %}
+  Tags List
+{% endblock %}
+
+{% block content %}
+  <div class="container" style="width: 80%; margin: auto;">
+    <h1>Tags:</h1>
+    <div class="mt-5 mb-5" style="display: block;">
+      {% for tag in tags %}
+        <h3 class="mb-2 mr-2"><a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a></h3>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

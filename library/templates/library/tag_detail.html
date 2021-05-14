@@ -1,0 +1,26 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+  <div style="display: grid; grid-template-columns: .5fr .5fr; align-items: center;">
+    <h1 class="mb-5 mr-5">Books with "{{ tag.title }}" tag:</h1>
+    <div class="form-group mb-5" style="display: none; margin-left: auto; {% if admin_perm %} display: flex; {% endif %}">
+      <!-- Delete Tag Form -->
+      <form action="{{ tag.get_delete_url }}" method="POST" style="padding-right: 20px;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" style="justify-self: left;">Delete Tag</button>
+      </form>
+      
+      <!-- Update Tag Form -->
+      <form action="{{ tag.get_update_url }}" method="GET">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary" style="justify-self: left;">Change Tag</button>
+      </form>
+    </div>
+  </div>
+  <div class="cardGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 500px)); grid-gap: 15px;">
+    {% for book in tag.books.all %}
+      {% include 'library/includes/book.html' %}
+    {% endfor %}
+  </div>
+
+{% endblock %}

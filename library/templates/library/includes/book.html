@@ -1,0 +1,14 @@
+<div class="card border-dark mb-4">
+  <div class="card-header">{{ book.publish_date }}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ book.title }}</h5>
+    <p class="card-text">{{ book.content | truncatewords:15 }}</p>
+    <a href="{{ book.get_absolute_url }}" class="btn btn-dark">Read More</a>
+  </div>
+  <div class="card-footer">
+    Tags:
+    {% for tag in book.tags.all %}
+      <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
+    {% endfor %}
+  </div>
+</div>

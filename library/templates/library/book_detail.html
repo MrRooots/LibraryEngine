@@ -1,0 +1,25 @@
+{% extends 'library/base.html' %}
+
+{% block title %}
+  {{ book.title }}
+{% endblock %}
+
+{% block content %}
+  <div class="book" style="width: 80%; margin: auto;">
+    <h1 class="mt-5 mb-5">{{ book.title }}</h1>
+    <p>{{ book.content }}</p>
+     <div style="padding: 20px 0; display: none; {% if admin_perm %} display: flex; {% endif %}">
+      <!-- Update The Book Information -->
+      <form action="{{ book.get_update_url }}" method="GET" style="padding-right: 20px;">
+        {% csrf_token %}
+      <button type="submit" class="btn btn-primary" style="width: 10%; min-width: 150px;">Update Book</button>
+      </form>
+
+      <!-- Delete The Book -->
+      <form action="{{ book.get_delete_url }}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" style="width: 10%; min-width: 150px;">Delete Book</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

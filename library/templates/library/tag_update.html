@@ -1,0 +1,21 @@
+{% extends 'library/base.html' %}
+
+{% block title %}
+  {{ tag.title }} - Update
+{% endblock %}
+
+{% block content %}
+  <form action="{{ tag.get_update_url }}" method="POST" style="width: 50%; margin: auto;">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label }}: {{ field }}
+        
+        {% if field.errors %}
+          <div class="mt-1 alert alert-danger">{{ field.errors }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <div style="margin: 20px 0; width: 50%;"><button class="btn btn-dark">Update Tag</button></div>
+  </form>
+{% endblock %}

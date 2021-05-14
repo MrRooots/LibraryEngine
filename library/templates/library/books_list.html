@@ -1,0 +1,16 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+  <h1 class="mb-5">Books: </h1>
+  <div class="cardGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 500px)); grid-gap: 15px;">
+    {% for book in books %}
+      {% include 'library/includes/book.html' %}
+    {% endfor %}
+  </div>
+  
+{% endblock %}
+
+
+
+куликовская битва	1380
+присоединение твери	1485

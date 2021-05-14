@@ -1,0 +1,21 @@
+{% extends 'library/base.html' %}
+
+{% block title %}
+  Book Creation
+{% endblock %}
+
+{% block content %}
+  <form action="{% url 'book_create_url' %}" method="POST" style="width: 50%; margin: auto;" id="BookCreateForm">
+    {% csrf_token %}
+
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label }}: {{ field }}
+        {% if field.errors %}
+          <div class="mt-1 alert alert-danger">{{ field.errors }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <div style="margin: 20px 0; width: 50%;"><button class="btn btn-dark" form="BookCreateForm">Add Book</button></div>
+  </form>
+{% endblock %}

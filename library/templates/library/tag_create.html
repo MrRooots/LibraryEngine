@@ -1,0 +1,23 @@
+{% extends 'library/base.html' %}
+
+{% block title %}
+  Tag Creation
+{% endblock %}
+
+{% block content %}
+  <form action="{% url 'tag_create_url' %}" method="POST" style="width: 50%; margin: auto;" id="TagCreateForm">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label }}: {{ field }}
+        
+        {% if field.errors %}
+          {% for error in field.errors %}
+            <div class="mt-1 alert alert-danger">{{ error }}</div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    {% endfor %}
+    <div style="margin: 20px 0; width: 50%;"><button class="btn btn-dark" form="TagCreateForm">Create Tag</button></div>
+  </form>
+{% endblock %}
